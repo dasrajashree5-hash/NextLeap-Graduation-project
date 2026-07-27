@@ -1,26 +1,40 @@
 "use client";
 
-import { useState } from "react";
-import BottomNav, { type MobileTab } from "@/components/blinkit/BottomNav";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import BottomNav from "@/components/blinkit/BottomNav";
 import CartView from "@/components/blinkit/CartView";
 import CategoriesView from "@/components/blinkit/CategoriesView";
 import DiscoverView from "@/components/blinkit/DiscoverView";
 import HomeView from "@/components/blinkit/HomeView";
 import MobileHeader from "@/components/blinkit/MobileHeader";
 import SearchBar from "@/components/blinkit/SearchBar";
+import { pathForTab, tabFromPath } from "@/lib/blinkitRoutes";
 import { CartProvider, useCart } from "@/lib/cart";
 
 function BlinkitShell() {
-  const [tab, setTab] = useState<MobileTab>("home");
+  const pathname = usePathname();
+  const router = useRouter();
+  const tab = tabFromPath(pathname);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState<string | null>(null);
   const { itemCount } = useCart();
 
   const showSearch = tab === "home" || tab === "categories";
 
+  useEffect(() => {
+    if (tab !== "categories") {
+      setCategory(null);
+    }
+  }, [tab]);
+
   function goCategory(cat: string) {
     setCategory(cat);
-    setTab("categories");
+    router.push("/categories");
+  }
+
+  function onTabChange(next: typeof tab) {
+    router.push(pathForTab(next));
   }
 
   return (
@@ -52,7 +66,7 @@ function BlinkitShell() {
         {tab === "discover" && <DiscoverView />}
       </main>
 
-      <BottomNav active={tab} onChange={setTab} cartCount={itemCount} />
+      <BottomNav active={tab} onChange={onTabChange} cartCount={itemCount} />
     </div>
   );
 }

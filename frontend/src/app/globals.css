@@ -21,3 +21,14 @@ body {
     background: linear-gradient(180deg, #f8cb46 0%, #e8e8e8 120px);
   }
 }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

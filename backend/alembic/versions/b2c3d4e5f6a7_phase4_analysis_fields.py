@@ -19,8 +19,39 @@ depends_on: Union[str, Sequence[str], None] = None
 
 def _has_column(table: str, column: str) -> bool:
     bind = op.get_bind()
-    rows = bind.execute(sa.text(f"PRAGMA table_info({table})")).fetchall()
-    return any(row[1] == column for row in rows)
+    insp = sa.inspect(bind)
+    return any(col["name"] == column for col in insp.get_columns(table))
+
+
+def _has_insights_theme_fk() -> bool:
+    bind = op.get_bind()
+    insp = sa.inspect(bind)
+    return any(
+        "theme_id" in fk.get("constrained_columns", [])
+        for fk in insp.get_foreign_keys("insights")
+    )
+
+
+def _add_insights_theme_id() -> None:
+    bind = op.get_bind()
+    if bind.dialect.name == "sqlite":
+        with op.batch_alter_table("insights") as batch_op:
+            batch_op.add_column(sa.Column("theme_id", sa.Integer(), nullable=True))
+            batch_op.create_foreign_key(
+                "fk_insights_theme_id",
+                "themes",
+                ["theme_id"],
+                ["id"],
+            )
+    else:
+        op.add_column("insights", sa.Column("theme_id", sa.Integer(), nullable=True))
+        op.create_foreign_key(
+            "fk_insights_theme_id",
+            "insights",
+            "themes",
+            ["theme_id"],
+            ["id"],
+        )
 
 
 def upgrade() -> None:
@@ -62,19 +93,36 @@ def upgrade() -> None:
     if not _has_column("insights", "rank_score"):
         op.add_column("insights", sa.Column("rank_score", sa.Float(), nullable=True))
     if not _has_column("insights", "theme_id"):
-        op.add_column("insights", sa.Column("theme_id", sa.Integer(), nullable=True))
-        op.create_foreign_key(
-            "fk_insights_theme_id",
-            "insights",
-            "themes",
-            ["theme_id"],
-            ["id"],
-        )
+        _add_insights_theme_id()
+    elif not _has_insights_theme_fk():
+        bind = op.get_bind()
+        if bind.dialect.name == "sqlite":
+            with op.batch_alter_table("insights") as batch_op:
+                batch_op.create_foreign_key(
+                    "fk_insights_theme_id",
+                    "themes",
+                    ["theme_id"],
+                    ["id"],
+                )
+        else:
+            op.create_foreign_key(
+                "fk_insights_theme_id",
+                "insights",
+                "themes",
+                ["theme_id"],
+                ["id"],
+            )
 
 
 def downgrade() -> None:
-    op.drop_constraint("fk_insights_theme_id", "insights", type_="foreignkey")
-    op.drop_column("insights", "theme_id")
+    bind = op.get_bind()
+    if bind.dialect.name == "sqlite":
+        with op.batch_alter_table("insights") as batch_op:
+            batch_op.drop_constraint("fk_insights_theme_id", type_="foreignkey")
+            batch_op.drop_column("theme_id")
+    else:
+        op.drop_constraint("fk_insights_theme_id", "insights", type_="foreignkey")
+        op.drop_column("insights", "theme_id")
     op.drop_column("insights", "rank_score")
     op.drop_column("insights", "confidence_breakdown")
     op.drop_column("analyses", "status")

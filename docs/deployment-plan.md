@@ -36,7 +36,7 @@ Backend CORS: add production frontend origin in `app/main.py` or via settings wh
 ## Backend deploy (Railway / Render)
 
 1. Root directory: `backend/`
-2. Start command: `alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+2. Start command (must run via shell so `$PORT` expands): `sh -c 'alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}'` — or leave blank to use the Dockerfile `CMD`.
 3. Health check path: `/api/health`
 4. Persistent volume (optional): mount `data/` for SQLite demo; use Postgres for production.
 

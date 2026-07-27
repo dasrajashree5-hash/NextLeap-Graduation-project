@@ -19,8 +19,14 @@ depends_on: Union[str, Sequence[str], None] = None
 
 def _has_column(table: str, column: str) -> bool:
     bind = op.get_bind()
-    rows = bind.execute(sa.text(f"PRAGMA table_info({table})")).fetchall()
-    return any(row[1] == column for row in rows)
+    insp = sa.inspect(bind)
+    return any(col["name"] == column for col in insp.get_columns(table))
+
+
+def _has_index(table: str, index_name: str) -> bool:
+    bind = op.get_bind()
+    insp = sa.inspect(bind)
+    return any(ix["name"] == index_name for ix in insp.get_indexes(table))
 
 
 def upgrade() -> None:
@@ -38,10 +44,7 @@ def upgrade() -> None:
             sa.Column("needs_chunking", sa.Boolean(), nullable=False, server_default=sa.false()),
         )
 
-    bind = op.get_bind()
-    indexes = bind.execute(sa.text("PRAGMA index_list(reviews)")).fetchall()
-    index_names = {row[1] for row in indexes}
-    if "ix_reviews_preprocessing_version" not in index_names:
+    if not _has_index("reviews", "ix_reviews_preprocessing_version"):
         op.create_index(
             op.f("ix_reviews_preprocessing_version"),
             "reviews",
