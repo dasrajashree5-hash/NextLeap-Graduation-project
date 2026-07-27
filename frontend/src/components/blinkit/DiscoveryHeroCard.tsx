@@ -1,8 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Sparkles } from "lucide-react";
+import { discoverHref } from "@/lib/discoveryNavigation";
 import { DISCOVERY_INPUT_PLACEHOLDER, POPULAR_CHIPS } from "@/lib/discoveryPrompts";
 
 function SparkleField() {
@@ -42,11 +44,11 @@ export default function DiscoveryHeroCard() {
 
   function goDiscover(prompt?: string) {
     const text = (prompt ?? value).trim();
-    if (text) {
-      router.push(`/discover?prompt=${encodeURIComponent(text)}`);
-    } else {
-      router.push("/discover");
-    }
+    router.push(discoverHref(text || undefined));
+  }
+
+  function onChipClick(prompt: string) {
+    setValue(prompt);
   }
 
   function onSubmit(e: React.FormEvent) {
@@ -80,13 +82,13 @@ export default function DiscoveryHeroCard() {
           >
             {POPULAR_CHIPS.map((chip) => (
               <li key={chip.label} className="flex-shrink-0">
-                <button
-                  type="button"
-                  onClick={() => goDiscover(chip.prompt)}
-                  className="whitespace-nowrap rounded-full border border-white/35 bg-white/15 px-3.5 py-2 text-xs font-semibold text-white shadow-sm backdrop-blur-sm transition hover:border-white/55 hover:bg-white/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
+                <Link
+                  href={discoverHref(chip.prompt)}
+                  onClick={() => onChipClick(chip.prompt)}
+                  className="inline-block whitespace-nowrap rounded-full border border-white/35 bg-white/15 px-3.5 py-2 text-xs font-semibold text-white shadow-sm backdrop-blur-sm transition hover:border-white/55 hover:bg-white/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
                 >
                   {chip.label}
-                </button>
+                </Link>
               </li>
             ))}
           </ul>

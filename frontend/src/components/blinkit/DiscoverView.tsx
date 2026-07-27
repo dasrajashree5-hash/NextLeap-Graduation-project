@@ -1,11 +1,13 @@
 "use client";
 
+import Link from "next/link";
 import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Loader2, Sparkles } from "lucide-react";
 import ProductCard from "@/components/blinkit/ProductCard";
 import { api, ApiError } from "@/lib/api";
 import { runDiscoverySearch, type DiscoveryGroup } from "@/lib/discoveryEngine";
+import { discoverHref } from "@/lib/discoveryNavigation";
 import { DISCOVERY_INPUT_PLACEHOLDER, POPULAR_CHIPS } from "@/lib/discoveryPrompts";
 
 function DiscoverViewInner() {
@@ -75,7 +77,7 @@ function DiscoverViewInner() {
     e.preventDefault();
     const trimmed = input.trim();
     if (trimmed) {
-      router.replace(`/discover?prompt=${encodeURIComponent(trimmed)}`, { scroll: false });
+      router.replace(discoverHref(trimmed), { scroll: false });
       void runSearch(trimmed);
     } else {
       router.replace("/discover", { scroll: false });
@@ -86,14 +88,14 @@ function DiscoverViewInner() {
   function submitFromKeyboard() {
     const trimmed = input.trim();
     if (trimmed) {
-      router.replace(`/discover?prompt=${encodeURIComponent(trimmed)}`, { scroll: false });
+      router.replace(discoverHref(trimmed), { scroll: false });
       void runSearch(trimmed);
     }
   }
 
   function applyChip(prompt: string) {
     setInput(prompt);
-    router.replace(`/discover?prompt=${encodeURIComponent(prompt)}`, { scroll: false });
+    router.replace(discoverHref(prompt), { scroll: false });
     void runSearch(prompt);
   }
 
@@ -120,13 +122,16 @@ function DiscoverViewInner() {
           >
             {POPULAR_CHIPS.map((chip) => (
               <li key={chip.label} className="shrink-0">
-                <button
-                  type="button"
-                  onClick={() => applyChip(chip.prompt)}
-                  className="whitespace-nowrap rounded-full border border-zinc-200 bg-white px-3.5 py-2 text-xs font-semibold text-zinc-700 shadow-sm transition hover:border-blinkit-green/40 hover:bg-blinkit-green/5 hover:text-blinkit-green"
+                <Link
+                  href={discoverHref(chip.prompt)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    applyChip(chip.prompt);
+                  }}
+                  className="inline-block whitespace-nowrap rounded-full border border-zinc-200 bg-white px-3.5 py-2 text-xs font-semibold text-zinc-700 shadow-sm transition hover:border-blinkit-green/40 hover:bg-blinkit-green/5 hover:text-blinkit-green"
                 >
                   {chip.label}
-                </button>
+                </Link>
               </li>
             ))}
           </ul>

@@ -15,6 +15,19 @@ test("admin dashboard shell loads with primary navigation", async ({ page }) => 
   await expect(page.getByRole("button", { name: "MVP demo" })).toBeVisible();
 });
 
+test("popular idea opens discover with product groups", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("link", { name: /Pasta Night/i }).click();
+  await expect(page).toHaveURL(/\/discover\?prompt=/);
+  await expect(page.getByRole("navigation", { name: "Primary" }).getByRole("button", { name: "Discover" })).toHaveAttribute(
+    "aria-current",
+    "page"
+  );
+  await expect(page.locator("section").filter({ hasText: /pasta|Italian|sauce/i }).first()).toBeVisible({
+    timeout: 10_000,
+  });
+});
+
 test("keyboard navigation reaches nav controls", async ({ page }) => {
   await page.goto("/");
   await page.keyboard.press("Tab");
