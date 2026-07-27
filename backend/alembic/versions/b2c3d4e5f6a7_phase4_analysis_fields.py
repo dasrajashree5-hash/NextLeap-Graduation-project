@@ -54,12 +54,13 @@ def _upgrade_insights() -> None:
         return
 
     if bind.dialect.name == "sqlite":
-        with op.batch_alter_table("insights") as batch_op:
+        with op.batch_alter_table("insights", recreate="auto") as batch_op:
             for col in insight_columns:
                 batch_op.add_column(col)
             if need_theme_id:
                 batch_op.add_column(sa.Column("theme_id", sa.Integer(), nullable=True))
-            if need_fk:
+            # FK via batch copy-and-move (SQLite cannot ALTER ADD CONSTRAINT).
+            if need_fk and (need_theme_id or _has_column("insights", "theme_id")):
                 batch_op.create_foreign_key(
                     "fk_insights_theme_id",
                     "themes",
