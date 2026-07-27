@@ -71,8 +71,17 @@ class Settings(BaseSettings):
     preprocess_batch_size: int = Field(default=256, alias="PREPROCESS_BATCH_SIZE")
     max_context_tokens: int = Field(default=400, alias="MAX_CONTEXT_TOKENS")
     cors_origins: str = Field(
-        default="http://localhost:3000,http://127.0.0.1:3000",
+        default=(
+            "http://localhost:3000,"
+            "http://127.0.0.1:3000,"
+            "https://graduationprojectblinkitnextleap.netlify.app"
+        ),
         alias="CORS_ORIGINS",
+    )
+    # Netlify deploy previews get a per-deploy subdomain.
+    cors_origin_regex: str = Field(
+        default=r"https://.*--graduationprojectblinkitnextleap\.netlify\.app",
+        alias="CORS_ORIGIN_REGEX",
     )
 
     @field_validator("database_url", mode="before")

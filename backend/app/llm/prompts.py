@@ -47,6 +47,14 @@ def load_prompt(filename: str) -> str:
     return load_prompt_spec(filename).body
 
 
+def render_prompt(template: str, **values: Any) -> str:
+    """Substitute {name} placeholders without treating literal JSON braces as fields."""
+    rendered = template
+    for key, value in values.items():
+        rendered = rendered.replace("{" + key + "}", str(value))
+    return rendered
+
+
 def load_prompt_spec(filename: str) -> PromptSpec:
     path = PROMPTS_DIR / filename
     raw = path.read_text(encoding="utf-8")

@@ -13,7 +13,7 @@ from sqlalchemy.orm import Session
 from app.config import Settings, get_settings
 from app.llm.groq_client import GroqClient, GroqLLMClient
 from app.llm.json_utils import validate_with_repair
-from app.llm.prompts import load_prompt_spec
+from app.llm.prompts import load_prompt_spec, render_prompt
 from app.models import Interview, Run
 from app.schemas.analysis import THEME_CATEGORIES
 from app.schemas.research import CodedQuote, InterviewCodingOutput
@@ -130,13 +130,14 @@ async def _code_one_llm(
     sync_client: GroqClient,
 ) -> InterviewCodingOutput:
     segment = interview.participant_segment or "unknown"
-    prompt = prompt_template.format(
+    prompt = render_prompt(
+        prompt_template,
         segment=segment,
         transcript=interview.transcript or "",
     )
 
     def repair_fn(raw: str, error: str) -> str:
-        repair_prompt = repair_body.format(error=error, payload=raw[:4000])
+        repair_prompt = render_prompt(repair_body, error=error, payload=raw[:4000])
         return sync_client.complete(repair_prompt, max_tokens=1024)
 
     raw = await client.complete(

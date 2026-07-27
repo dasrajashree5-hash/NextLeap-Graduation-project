@@ -17,7 +17,7 @@ from app.insights.triangulation import triangulation_label
 from app.llm.client import LLMRunBudget
 from app.llm.groq_client import GroqClient, GroqLLMClient
 from app.llm.json_utils import validate_with_repair
-from app.llm.prompts import load_prompt_spec
+from app.llm.prompts import load_prompt_spec, render_prompt
 from app.models import Cluster, Insight, Review, ReviewTheme, Run, Theme, Validation
 from app.schemas.analysis import InsightListOutput
 
@@ -63,7 +63,8 @@ async def _generate_for_theme(
         return [], 0
 
     spec = load_prompt_spec(PROMPT_FILE)
-    prompt = spec.body.format(
+    prompt = render_prompt(
+        spec.body,
         category=theme.category or "",
         label=theme.label,
         description=theme.description or "",
@@ -74,7 +75,7 @@ async def _generate_for_theme(
     sync_client = GroqClient(settings)
 
     def repair_fn(raw: str, error: str) -> str:
-        repair_prompt = repair_body.format(error=error, payload=raw[:4000])
+        repair_prompt = render_prompt(repair_body, error=error, payload=raw[:4000])
         return sync_client.complete(repair_prompt, max_tokens=1200)
 
     raw = await client.complete(

@@ -19,17 +19,17 @@ because in-flow surfaces do not reduce trust and habit barriers with contextual,
 
 ## Evidence summary
 
-- **Interviews coded:** 27
+- **Interviews coded:** 30
 - **Survey aggregates:** 6 question/response buckets loaded
-- **AI insights triangulated:** 18
+- **AI insights triangulated:** 21
 
 ### Top affinity themes (human + AI)
 
 - **Recommendations** — 85 findings (survey)
-- **Trust** — 73 findings (interview:1, interview:10, interview:12)
-- **Category Discovery** — 56 findings (interview:10, interview:12, interview:14)
-- **Shopping Habit** — 25 findings (interview:11, interview:13, interview:15)
-- **Search** — 12 findings (interview:1, interview:10, interview:12)
+- **Trust** — 75 findings (interview:1, interview:10, interview:12)
+- **Category Discovery** — 58 findings (interview:10, interview:12, interview:14)
+- **Shopping Habit** — 26 findings (interview:11, interview:13, interview:15)
+- **Search** — 14 findings (interview:1, interview:10, interview:12)
 
 ### Validated / contested AI insights
 

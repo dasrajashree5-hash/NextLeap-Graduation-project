@@ -29,7 +29,12 @@ Copy [`.env.example`](../.env.example) per service.
 | `ENVIRONMENT` | `production` | — |
 | `NEXT_PUBLIC_API_URL` | — | e.g. `https://api.example.com` |
 
-Backend CORS: add production frontend origin in `app/main.py` or via settings when deploying.
+Backend CORS: `CORS_ORIGINS` (comma-separated) plus `CORS_ORIGIN_REGEX` for Netlify deploy previews.
+Defaults already allow localhost and `https://graduationprojectblinkitnextleap.netlify.app`; override both
+when the frontend moves to a different domain.
+
+**Verifying live env vars:** `GET /api/health` echoes `environment`. If it reports `development` on Railway,
+no service variables are set, which also means `CORS_ORIGINS` and `DATABASE_URL` are falling back to defaults.
 
 ---
 
@@ -46,8 +51,12 @@ Backend CORS: add production frontend origin in `app/main.py` or via settings wh
    | `DATABASE_URL` | **Yes (production)** | Attach Railway Postgres or paste URL; `postgres://` / `postgresql://` are auto-normalized to `postgresql+psycopg://` |
    | `ENVIRONMENT` | Recommended | `production` |
    | `GROQ_API_KEY` | Optional | LLM pipelines; health may show `not_configured` without it |
-   | `CORS_ORIGINS` | **Yes for Netlify** | e.g. `https://graduationprojectblinkitnextleap.netlify.app` |
+   | `CORS_ORIGINS` | Recommended | Defaults include the Netlify site; set explicitly if the domain changes |
+   | `CORS_ORIGIN_REGEX` | Optional | Netlify deploy previews (`https://<hash>--<site>.netlify.app`) |
    | `CHROMA_PERSIST_DIR` | Optional | Default `./data/chroma`; use a volume for persistence |
+
+   A fresh deploy starts with an **empty database**, so `/api/themes` and `/api/insights` return `[]`.
+   Seed demo data with `POST /api/research/seed?code=true`, then run the analysis pipeline.
 
 5. **Public URL:** Service → **Settings → Networking → Generate domain**. Without a domain, the service is not reachable from the internet.
 6. Persistent volume (optional): mount `data/` for SQLite demo; use Postgres for production.

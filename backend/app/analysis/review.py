@@ -13,7 +13,7 @@ from app.config import Settings, get_settings
 from app.llm.client import LLMRunBudget
 from app.llm.groq_client import GroqClient, GroqLLMClient
 from app.llm.json_utils import validate_with_repair
-from app.llm.prompts import load_prompt_spec
+from app.llm.prompts import load_prompt_spec, render_prompt
 from app.models import Analysis, Embedding, Review, Run
 from app.schemas.analysis import ReviewAnalysisOutput
 
@@ -59,10 +59,10 @@ async def _analyze_one(
 ) -> Tuple[Review, Optional[ReviewAnalysisOutput], Optional[str]]:
     text = _analysis_text(review)
     rating = review.rating if review.rating is not None else "unknown"
-    prompt = prompt_template.format(text=text, rating=rating)
+    prompt = render_prompt(prompt_template, text=text, rating=rating)
 
     def repair_fn(raw: str, error: str) -> str:
-        repair_prompt = repair_template.format(error=error, payload=raw[:4000])
+        repair_prompt = render_prompt(repair_template, error=error, payload=raw[:4000])
         return sync_client.complete(repair_prompt, max_tokens=1024)
 
     try:

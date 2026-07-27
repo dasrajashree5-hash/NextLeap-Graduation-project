@@ -15,7 +15,7 @@ from app.embeddings.store import VectorStore
 from app.llm.client import LLMRunBudget
 from app.llm.groq_client import GroqClient, GroqLLMClient
 from app.llm.json_utils import validate_with_repair
-from app.llm.prompts import load_prompt_spec
+from app.llm.prompts import load_prompt_spec, render_prompt
 from app.models import Cluster, Embedding, Review, ReviewTheme, Run, Theme
 from app.schemas.analysis import THEME_CATEGORIES, ClusterLabelOutput
 
@@ -65,7 +65,7 @@ async def _label_cluster(
 ) -> Tuple[Optional[ClusterLabelOutput], Optional[str]]:
     reviews_block = "\n\n".join(f"- {t[:500]}" for t in sample_texts)
     spec = load_prompt_spec(PROMPT_FILE)
-    prompt = spec.body.format(reviews=reviews_block)
+    prompt = render_prompt(spec.body, reviews=reviews_block)
 
     try:
         raw = await client.complete(
@@ -74,7 +74,7 @@ async def _label_cluster(
         sync_client = GroqClient(client.settings)
 
         def repair_fn(raw_payload: str, error: str) -> str:
-            repair_prompt = repair_body.format(error=error, payload=raw_payload[:4000])
+            repair_prompt = render_prompt(repair_body, error=error, payload=raw_payload[:4000])
             return sync_client.complete(repair_prompt, max_tokens=512)
 
         parsed, err = validate_with_repair(raw, ClusterLabelOutput, repair_fn=repair_fn)
