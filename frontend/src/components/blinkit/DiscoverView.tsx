@@ -6,7 +6,7 @@ import { Loader2, Sparkles } from "lucide-react";
 import ProductCard from "@/components/blinkit/ProductCard";
 import { api, ApiError } from "@/lib/api";
 import { runDiscoverySearch, type DiscoveryGroup } from "@/lib/discoveryEngine";
-import { POPULAR_CHIPS } from "@/lib/discoveryPrompts";
+import { DISCOVERY_INPUT_PLACEHOLDER, POPULAR_CHIPS } from "@/lib/discoveryPrompts";
 
 function DiscoverViewInner() {
   const router = useRouter();
@@ -83,6 +83,14 @@ function DiscoverViewInner() {
     }
   }
 
+  function submitFromKeyboard() {
+    const trimmed = input.trim();
+    if (trimmed) {
+      router.replace(`/discover?prompt=${encodeURIComponent(trimmed)}`, { scroll: false });
+      void runSearch(trimmed);
+    }
+  }
+
   function applyChip(prompt: string) {
     setInput(prompt);
     router.replace(`/discover?prompt=${encodeURIComponent(prompt)}`, { scroll: false });
@@ -92,52 +100,72 @@ function DiscoverViewInner() {
   return (
     <div className="space-y-5 pb-4">
       <div className="px-4">
-        <h1 className="text-lg font-bold text-zinc-900">AI Discovery</h1>
-        <p className="mt-1 text-xs text-zinc-500">
-          Describe a meal, occasion, or need — we&apos;ll group picks from across Blinkit.
+        <h1 className="flex items-center gap-1.5 text-lg font-bold text-zinc-900">
+          <Sparkles className="h-5 w-5 text-blinkit-green" aria-hidden />
+          Discover with AI
+        </h1>
+        <p className="mt-1 text-xs leading-relaxed text-zinc-500">
+          Plan meals, gifts, parties or everyday shopping using natural language.
         </p>
       </div>
 
-      <form onSubmit={onSubmit} className="space-y-3 px-4" aria-label="Discovery search">
+      <form onSubmit={onSubmit} className="space-y-4 px-4" aria-label="Discovery search">
+        <div>
+          <p id="discover-popular" className="text-xs font-bold text-zinc-800">
+            Popular ideas
+          </p>
+          <ul
+            className="mt-2 flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            aria-labelledby="discover-popular"
+          >
+            {POPULAR_CHIPS.map((chip) => (
+              <li key={chip.label} className="shrink-0">
+                <button
+                  type="button"
+                  onClick={() => applyChip(chip.prompt)}
+                  className="whitespace-nowrap rounded-full border border-zinc-200 bg-white px-3.5 py-2 text-xs font-semibold text-zinc-700 shadow-sm transition hover:border-blinkit-green/40 hover:bg-blinkit-green/5 hover:text-blinkit-green"
+                >
+                  {chip.label}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+
         <label className="sr-only" htmlFor="discover-prompt">
-          What do you need?
+          {DISCOVERY_INPUT_PLACEHOLDER}
         </label>
-        <div className="flex gap-2">
-          <input
+        <div className="rounded-2xl border border-zinc-100 bg-white p-3 shadow-card">
+          <textarea
             id="discover-prompt"
-            type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder='Try "I&apos;m making pasta tonight"'
-            className="min-w-0 flex-1 rounded-xl border border-zinc-200 bg-white px-3 py-3 text-sm shadow-sm focus:border-blinkit-green focus:outline-none focus:ring-2 focus:ring-blinkit-green/20"
+            placeholder={DISCOVERY_INPUT_PLACEHOLDER}
+            rows={3}
+            className="w-full resize-none border-0 bg-transparent text-sm leading-relaxed text-zinc-800 placeholder:text-zinc-400 focus:outline-none focus:ring-0"
             autoComplete="off"
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                submitFromKeyboard();
+              }
+            }}
           />
-          <button
-            type="submit"
-            disabled={searching}
-            className="flex shrink-0 items-center gap-1.5 rounded-xl bg-blinkit-green px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-blinkit-green-dark disabled:opacity-70"
-          >
-            {searching ? (
-              <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
-            ) : (
-              <Sparkles className="h-4 w-4" aria-hidden />
-            )}
-            <span className="sr-only sm:not-sr-only">Discover</span>
-          </button>
+          <div className="mt-1 flex justify-end">
+            <button
+              type="submit"
+              disabled={searching}
+              className="inline-flex items-center gap-1.5 rounded-xl bg-blinkit-green px-4 py-2.5 text-sm font-bold text-white shadow-md transition hover:bg-blinkit-green-dark disabled:opacity-70 active:scale-[0.98]"
+            >
+              {searching ? (
+                <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
+              ) : (
+                <Sparkles className="h-4 w-4" aria-hidden />
+              )}
+              Discover
+            </button>
+          </div>
         </div>
-        <ul className="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {POPULAR_CHIPS.slice(0, 6).map((chip) => (
-            <li key={chip.label} className="shrink-0">
-              <button
-                type="button"
-                onClick={() => applyChip(chip.prompt)}
-                className="rounded-full border border-zinc-200 bg-white px-3 py-1.5 text-[11px] font-medium text-zinc-600 hover:border-blinkit-green/30"
-              >
-                {chip.label}
-              </button>
-            </li>
-          ))}
-        </ul>
       </form>
 
       {searchError && (

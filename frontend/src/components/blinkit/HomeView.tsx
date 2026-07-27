@@ -8,9 +8,7 @@ import {
   productsByCategory,
 } from "@/lib/catalog";
 import ProductCard from "@/components/blinkit/ProductCard";
-import CustomPromptComposer from "@/components/blinkit/CustomPromptComposer";
 import DiscoveryHeroCard from "@/components/blinkit/DiscoveryHeroCard";
-import PopularIdeasChips from "@/components/blinkit/PopularIdeasChips";
 
 type Props = {
   search: string;
@@ -47,8 +45,6 @@ export default function HomeView({ search, onCategorySelect }: Props) {
       {!filtered && (
         <>
           <DiscoveryHeroCard />
-          <PopularIdeasChips />
-          <CustomPromptComposer />
         </>
       )}
 
