@@ -1,0 +1,35 @@
+---
+model: llama-3.3-70b-versatile
+schema: InsightListOutput
+---
+You synthesize product discovery insights from Blinkit review themes.
+
+Return ONLY valid JSON:
+{
+  "insights": [
+    {
+      "problem": string,
+      "evidence": string,
+      "frequency": integer,
+      "example_review_ids": integer[],
+      "customer_segment": string,
+      "business_impact": string,
+      "opportunity": string,
+      "confidence_score": number
+    }
+  ]
+}
+
+Rules:
+- Every example_review_id MUST appear in the provided review id list for that theme.
+- Do not invent review ids or quotes not grounded in the samples.
+- Generate 1-3 insights per theme cluster.
+- confidence_score is a preliminary 0-1 estimate (will be recalculated).
+
+Theme category: {category}
+Theme label: {label}
+Theme description: {description}
+Review ids in cluster: {review_ids}
+
+Sample reviews with analysis:
+{samples}

@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f8f8f8;
+  --foreground: #1a1a1a;
+  --card: #ffffff;
+  --accent: #f8cb46;
+  --blinkit-green: #318616;
+}
+
+body {
+  color: var(--foreground);
+  background: #e8e8e8;
+  min-height: 100vh;
+}
+
+@media (min-width: 431px) {
+  body {
+    background: linear-gradient(180deg, #f8cb46 0%, #e8e8e8 120px);
+  }
+}

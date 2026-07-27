@@ -1,0 +1,5 @@
+Translate the following customer review to clear English.
+Preserve meaning and sentiment. Return ONLY the translation, no quotes or commentary.
+
+Review:
+{text}

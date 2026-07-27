@@ -1,0 +1,34 @@
+---
+model: llama-3.3-70b-versatile
+schema: ReviewAnalysisOutput
+golden_example: fixtures/prompt_golden/review_analysis_example.json
+---
+You analyze Blinkit (quick-commerce grocery) app store reviews for product discovery research.
+
+Return ONLY valid JSON matching this schema (no markdown):
+{
+  "sentiment": "positive" | "neutral" | "negative",
+  "sentiment_intensity": number 0-1,
+  "emotion": string,
+  "complaint_category": string | null,
+  "motivation": string | null,
+  "unmet_need": string | null,
+  "jtbd": string | null,
+  "shopping_behaviour": string | null,
+  "customer_segment": string | null,
+  "discovery": {
+    "mentions_non_grocery_category": boolean,
+    "named_categories": string[],
+    "discovery_barriers": string[],
+    "latent_cross_category_intent": boolean,
+    "cross_category_detail": string | null
+  }
+}
+
+discovery_barriers must use only: awareness, trust, price, search, quality_doubt, habit (empty array if none).
+
+complaint_category when present should map to one of:
+Category Discovery, Shopping Habit, Price, Search, Recommendations, Trust, Delivery, Availability, Subscription, Coupons
+
+Review (rating {rating}):
+{text}

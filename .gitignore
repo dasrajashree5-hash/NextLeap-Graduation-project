@@ -1,0 +1,33 @@
+# Dependencies
+backend/.venv/
+backend/data/*.db
+backend/data/chroma/
+frontend/node_modules/
+frontend/.next/
+streamlit_app/.venv/
+
+# Environment
+.env
+backend/.env
+*.pem
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+htmlcov/
+.coverage
+
+# Logs
+*.log
+
+# Build
+dist/
+build/

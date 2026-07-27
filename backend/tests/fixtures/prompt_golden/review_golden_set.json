@@ -1,0 +1,1628 @@
+[
+  {
+    "id": "golden-001",
+    "text": "Blinkit search never shows the brand I want. (case 1)",
+    "rating": 5,
+    "expected": {
+      "sentiment": "positive",
+      "discovery_barriers": [
+        "search"
+      ],
+      "mentions_non_grocery_category": true
+    },
+    "baseline_output": {
+      "sentiment": "positive",
+      "sentiment_intensity": 0.5,
+      "emotion": "satisfaction",
+      "complaint_category": "Search",
+      "motivation": "quick groceries",
+      "unmet_need": "find products faster",
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": true,
+        "named_categories": [
+          "snacks"
+        ],
+        "discovery_barriers": [
+          "search"
+        ],
+        "latent_cross_category_intent": true,
+        "cross_category_detail": "beauty items"
+      }
+    }
+  },
+  {
+    "id": "golden-002",
+    "text": "Delivery was fast but I only buy vegetables out of habit. (case 2)",
+    "rating": 3,
+    "expected": {
+      "sentiment": "neutral",
+      "discovery_barriers": [
+        "trust"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "neutral",
+      "sentiment_intensity": 0.6,
+      "emotion": "satisfaction",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "trust"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-003",
+    "text": "Too expensive compared to the local kirana for snacks. (case 3)",
+    "rating": 1,
+    "expected": {
+      "sentiment": "negative",
+      "discovery_barriers": [
+        "price"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "negative",
+      "sentiment_intensity": 0.7,
+      "emotion": "frustration",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "price"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-004",
+    "text": "I did not know Blinkit sells personal care until a friend told me. (case 4)",
+    "rating": 5,
+    "expected": {
+      "sentiment": "positive",
+      "discovery_barriers": [
+        "habit"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "positive",
+      "sentiment_intensity": 0.8,
+      "emotion": "satisfaction",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "habit"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-005",
+    "text": "Great app! Love the quick delivery every time. (case 5)",
+    "rating": 3,
+    "expected": {
+      "sentiment": "neutral",
+      "discovery_barriers": [
+        "awareness"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "neutral",
+      "sentiment_intensity": 0.9,
+      "emotion": "satisfaction",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "awareness"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-006",
+    "text": "Product quality was doubtful for fruits last order. (case 6)",
+    "rating": 1,
+    "expected": {
+      "sentiment": "negative",
+      "discovery_barriers": [
+        "quality_doubt"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "negative",
+      "sentiment_intensity": 0.5,
+      "emotion": "frustration",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "quality_doubt"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-007",
+    "text": "Recommendations feel random and not useful. (case 7)",
+    "rating": 5,
+    "expected": {
+      "sentiment": "positive",
+      "discovery_barriers": [
+        "search",
+        "trust"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "positive",
+      "sentiment_intensity": 0.6,
+      "emotion": "satisfaction",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "search",
+          "trust"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-008",
+    "text": "I trust Blinkit for groceries but not for electronics. (case 8)",
+    "rating": 3,
+    "expected": {
+      "sentiment": "neutral",
+      "discovery_barriers": [],
+      "mentions_non_grocery_category": true
+    },
+    "baseline_output": {
+      "sentiment": "neutral",
+      "sentiment_intensity": 0.7,
+      "emotion": "satisfaction",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": true,
+        "named_categories": [
+          "snacks"
+        ],
+        "discovery_barriers": [],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-009",
+    "text": "Coupon codes rarely work at checkout frustrating. (case 9)",
+    "rating": 1,
+    "expected": {
+      "sentiment": "negative",
+      "discovery_barriers": [
+        "price",
+        "search"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "negative",
+      "sentiment_intensity": 0.8,
+      "emotion": "frustration",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "price",
+          "search"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-010",
+    "text": "Subscription plan saves time for weekly stockup. (case 10)",
+    "rating": 5,
+    "expected": {
+      "sentiment": "positive",
+      "discovery_barriers": [
+        "habit",
+        "awareness"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "positive",
+      "sentiment_intensity": 0.9,
+      "emotion": "satisfaction",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "habit",
+          "awareness"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-011",
+    "text": "Blinkit search never shows the brand I want. (case 11)",
+    "rating": 3,
+    "expected": {
+      "sentiment": "neutral",
+      "discovery_barriers": [
+        "search"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "neutral",
+      "sentiment_intensity": 0.5,
+      "emotion": "satisfaction",
+      "complaint_category": "Search",
+      "motivation": "quick groceries",
+      "unmet_need": "find products faster",
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "search"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-012",
+    "text": "Delivery was fast but I only buy vegetables out of habit. (case 12)",
+    "rating": 1,
+    "expected": {
+      "sentiment": "negative",
+      "discovery_barriers": [
+        "trust"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "negative",
+      "sentiment_intensity": 0.6,
+      "emotion": "frustration",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "trust"
+        ],
+        "latent_cross_category_intent": true,
+        "cross_category_detail": "beauty items"
+      }
+    }
+  },
+  {
+    "id": "golden-013",
+    "text": "Too expensive compared to the local kirana for snacks. (case 13)",
+    "rating": 5,
+    "expected": {
+      "sentiment": "positive",
+      "discovery_barriers": [
+        "price"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "positive",
+      "sentiment_intensity": 0.7,
+      "emotion": "satisfaction",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "price"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-014",
+    "text": "I did not know Blinkit sells personal care until a friend told me. (case 14)",
+    "rating": 3,
+    "expected": {
+      "sentiment": "neutral",
+      "discovery_barriers": [
+        "habit"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "neutral",
+      "sentiment_intensity": 0.8,
+      "emotion": "satisfaction",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "habit"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-015",
+    "text": "Great app! Love the quick delivery every time. (case 15)",
+    "rating": 1,
+    "expected": {
+      "sentiment": "negative",
+      "discovery_barriers": [
+        "awareness"
+      ],
+      "mentions_non_grocery_category": true
+    },
+    "baseline_output": {
+      "sentiment": "negative",
+      "sentiment_intensity": 0.9,
+      "emotion": "frustration",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": true,
+        "named_categories": [
+          "snacks"
+        ],
+        "discovery_barriers": [
+          "awareness"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-016",
+    "text": "Product quality was doubtful for fruits last order. (case 16)",
+    "rating": 5,
+    "expected": {
+      "sentiment": "positive",
+      "discovery_barriers": [
+        "quality_doubt"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "positive",
+      "sentiment_intensity": 0.5,
+      "emotion": "satisfaction",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "quality_doubt"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-017",
+    "text": "Recommendations feel random and not useful. (case 17)",
+    "rating": 3,
+    "expected": {
+      "sentiment": "neutral",
+      "discovery_barriers": [
+        "search",
+        "trust"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "neutral",
+      "sentiment_intensity": 0.6,
+      "emotion": "satisfaction",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "search",
+          "trust"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-018",
+    "text": "I trust Blinkit for groceries but not for electronics. (case 18)",
+    "rating": 1,
+    "expected": {
+      "sentiment": "negative",
+      "discovery_barriers": [],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "negative",
+      "sentiment_intensity": 0.7,
+      "emotion": "frustration",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-019",
+    "text": "Coupon codes rarely work at checkout frustrating. (case 19)",
+    "rating": 5,
+    "expected": {
+      "sentiment": "positive",
+      "discovery_barriers": [
+        "price",
+        "search"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "positive",
+      "sentiment_intensity": 0.8,
+      "emotion": "satisfaction",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "price",
+          "search"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-020",
+    "text": "Subscription plan saves time for weekly stockup. (case 20)",
+    "rating": 3,
+    "expected": {
+      "sentiment": "neutral",
+      "discovery_barriers": [
+        "habit",
+        "awareness"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "neutral",
+      "sentiment_intensity": 0.9,
+      "emotion": "satisfaction",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "habit",
+          "awareness"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-021",
+    "text": "Blinkit search never shows the brand I want. (case 21)",
+    "rating": 1,
+    "expected": {
+      "sentiment": "negative",
+      "discovery_barriers": [
+        "search"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "negative",
+      "sentiment_intensity": 0.5,
+      "emotion": "frustration",
+      "complaint_category": "Search",
+      "motivation": "quick groceries",
+      "unmet_need": "find products faster",
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "search"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-022",
+    "text": "Delivery was fast but I only buy vegetables out of habit. (case 22)",
+    "rating": 5,
+    "expected": {
+      "sentiment": "positive",
+      "discovery_barriers": [
+        "trust"
+      ],
+      "mentions_non_grocery_category": true
+    },
+    "baseline_output": {
+      "sentiment": "positive",
+      "sentiment_intensity": 0.6,
+      "emotion": "satisfaction",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": true,
+        "named_categories": [
+          "snacks"
+        ],
+        "discovery_barriers": [
+          "trust"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-023",
+    "text": "Too expensive compared to the local kirana for snacks. (case 23)",
+    "rating": 3,
+    "expected": {
+      "sentiment": "neutral",
+      "discovery_barriers": [
+        "price"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "neutral",
+      "sentiment_intensity": 0.7,
+      "emotion": "satisfaction",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "price"
+        ],
+        "latent_cross_category_intent": true,
+        "cross_category_detail": "beauty items"
+      }
+    }
+  },
+  {
+    "id": "golden-024",
+    "text": "I did not know Blinkit sells personal care until a friend told me. (case 24)",
+    "rating": 1,
+    "expected": {
+      "sentiment": "negative",
+      "discovery_barriers": [
+        "habit"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "negative",
+      "sentiment_intensity": 0.8,
+      "emotion": "frustration",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "habit"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-025",
+    "text": "Great app! Love the quick delivery every time. (case 25)",
+    "rating": 5,
+    "expected": {
+      "sentiment": "positive",
+      "discovery_barriers": [
+        "awareness"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "positive",
+      "sentiment_intensity": 0.9,
+      "emotion": "satisfaction",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "awareness"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-026",
+    "text": "Product quality was doubtful for fruits last order. (case 26)",
+    "rating": 3,
+    "expected": {
+      "sentiment": "neutral",
+      "discovery_barriers": [
+        "quality_doubt"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "neutral",
+      "sentiment_intensity": 0.5,
+      "emotion": "satisfaction",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "quality_doubt"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-027",
+    "text": "Recommendations feel random and not useful. (case 27)",
+    "rating": 1,
+    "expected": {
+      "sentiment": "negative",
+      "discovery_barriers": [
+        "search",
+        "trust"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "negative",
+      "sentiment_intensity": 0.6,
+      "emotion": "frustration",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "search",
+          "trust"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-028",
+    "text": "I trust Blinkit for groceries but not for electronics. (case 28)",
+    "rating": 5,
+    "expected": {
+      "sentiment": "positive",
+      "discovery_barriers": [],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "positive",
+      "sentiment_intensity": 0.7,
+      "emotion": "satisfaction",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-029",
+    "text": "Coupon codes rarely work at checkout frustrating. (case 29)",
+    "rating": 3,
+    "expected": {
+      "sentiment": "neutral",
+      "discovery_barriers": [
+        "price",
+        "search"
+      ],
+      "mentions_non_grocery_category": true
+    },
+    "baseline_output": {
+      "sentiment": "neutral",
+      "sentiment_intensity": 0.8,
+      "emotion": "satisfaction",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": true,
+        "named_categories": [
+          "snacks"
+        ],
+        "discovery_barriers": [
+          "price",
+          "search"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-030",
+    "text": "Subscription plan saves time for weekly stockup. (case 30)",
+    "rating": 1,
+    "expected": {
+      "sentiment": "negative",
+      "discovery_barriers": [
+        "habit",
+        "awareness"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "negative",
+      "sentiment_intensity": 0.9,
+      "emotion": "frustration",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "habit",
+          "awareness"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-031",
+    "text": "Blinkit search never shows the brand I want. (case 31)",
+    "rating": 5,
+    "expected": {
+      "sentiment": "positive",
+      "discovery_barriers": [
+        "search"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "positive",
+      "sentiment_intensity": 0.5,
+      "emotion": "satisfaction",
+      "complaint_category": "Search",
+      "motivation": "quick groceries",
+      "unmet_need": "find products faster",
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "search"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-032",
+    "text": "Delivery was fast but I only buy vegetables out of habit. (case 32)",
+    "rating": 3,
+    "expected": {
+      "sentiment": "neutral",
+      "discovery_barriers": [
+        "trust"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "neutral",
+      "sentiment_intensity": 0.6,
+      "emotion": "satisfaction",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "trust"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-033",
+    "text": "Too expensive compared to the local kirana for snacks. (case 33)",
+    "rating": 1,
+    "expected": {
+      "sentiment": "negative",
+      "discovery_barriers": [
+        "price"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "negative",
+      "sentiment_intensity": 0.7,
+      "emotion": "frustration",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "price"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-034",
+    "text": "I did not know Blinkit sells personal care until a friend told me. (case 34)",
+    "rating": 5,
+    "expected": {
+      "sentiment": "positive",
+      "discovery_barriers": [
+        "habit"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "positive",
+      "sentiment_intensity": 0.8,
+      "emotion": "satisfaction",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "habit"
+        ],
+        "latent_cross_category_intent": true,
+        "cross_category_detail": "beauty items"
+      }
+    }
+  },
+  {
+    "id": "golden-035",
+    "text": "Great app! Love the quick delivery every time. (case 35)",
+    "rating": 3,
+    "expected": {
+      "sentiment": "neutral",
+      "discovery_barriers": [
+        "awareness"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "neutral",
+      "sentiment_intensity": 0.9,
+      "emotion": "satisfaction",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "awareness"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-036",
+    "text": "Product quality was doubtful for fruits last order. (case 36)",
+    "rating": 1,
+    "expected": {
+      "sentiment": "negative",
+      "discovery_barriers": [
+        "quality_doubt"
+      ],
+      "mentions_non_grocery_category": true
+    },
+    "baseline_output": {
+      "sentiment": "negative",
+      "sentiment_intensity": 0.5,
+      "emotion": "frustration",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": true,
+        "named_categories": [
+          "snacks"
+        ],
+        "discovery_barriers": [
+          "quality_doubt"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-037",
+    "text": "Recommendations feel random and not useful. (case 37)",
+    "rating": 5,
+    "expected": {
+      "sentiment": "positive",
+      "discovery_barriers": [
+        "search",
+        "trust"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "positive",
+      "sentiment_intensity": 0.6,
+      "emotion": "satisfaction",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "search",
+          "trust"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-038",
+    "text": "I trust Blinkit for groceries but not for electronics. (case 38)",
+    "rating": 3,
+    "expected": {
+      "sentiment": "neutral",
+      "discovery_barriers": [],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "neutral",
+      "sentiment_intensity": 0.7,
+      "emotion": "satisfaction",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-039",
+    "text": "Coupon codes rarely work at checkout frustrating. (case 39)",
+    "rating": 1,
+    "expected": {
+      "sentiment": "negative",
+      "discovery_barriers": [
+        "price",
+        "search"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "negative",
+      "sentiment_intensity": 0.8,
+      "emotion": "frustration",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "price",
+          "search"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-040",
+    "text": "Subscription plan saves time for weekly stockup. (case 40)",
+    "rating": 5,
+    "expected": {
+      "sentiment": "positive",
+      "discovery_barriers": [
+        "habit",
+        "awareness"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "positive",
+      "sentiment_intensity": 0.9,
+      "emotion": "satisfaction",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "habit",
+          "awareness"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-041",
+    "text": "Blinkit search never shows the brand I want. (case 41)",
+    "rating": 3,
+    "expected": {
+      "sentiment": "neutral",
+      "discovery_barriers": [
+        "search"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "neutral",
+      "sentiment_intensity": 0.5,
+      "emotion": "satisfaction",
+      "complaint_category": "Search",
+      "motivation": "quick groceries",
+      "unmet_need": "find products faster",
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "search"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-042",
+    "text": "Delivery was fast but I only buy vegetables out of habit. (case 42)",
+    "rating": 1,
+    "expected": {
+      "sentiment": "negative",
+      "discovery_barriers": [
+        "trust"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "negative",
+      "sentiment_intensity": 0.6,
+      "emotion": "frustration",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "trust"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-043",
+    "text": "Too expensive compared to the local kirana for snacks. (case 43)",
+    "rating": 5,
+    "expected": {
+      "sentiment": "positive",
+      "discovery_barriers": [
+        "price"
+      ],
+      "mentions_non_grocery_category": true
+    },
+    "baseline_output": {
+      "sentiment": "positive",
+      "sentiment_intensity": 0.7,
+      "emotion": "satisfaction",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": true,
+        "named_categories": [
+          "snacks"
+        ],
+        "discovery_barriers": [
+          "price"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-044",
+    "text": "I did not know Blinkit sells personal care until a friend told me. (case 44)",
+    "rating": 3,
+    "expected": {
+      "sentiment": "neutral",
+      "discovery_barriers": [
+        "habit"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "neutral",
+      "sentiment_intensity": 0.8,
+      "emotion": "satisfaction",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "habit"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-045",
+    "text": "Great app! Love the quick delivery every time. (case 45)",
+    "rating": 1,
+    "expected": {
+      "sentiment": "negative",
+      "discovery_barriers": [
+        "awareness"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "negative",
+      "sentiment_intensity": 0.9,
+      "emotion": "frustration",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "awareness"
+        ],
+        "latent_cross_category_intent": true,
+        "cross_category_detail": "beauty items"
+      }
+    }
+  },
+  {
+    "id": "golden-046",
+    "text": "Product quality was doubtful for fruits last order. (case 46)",
+    "rating": 5,
+    "expected": {
+      "sentiment": "positive",
+      "discovery_barriers": [
+        "quality_doubt"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "positive",
+      "sentiment_intensity": 0.5,
+      "emotion": "satisfaction",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "quality_doubt"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-047",
+    "text": "Recommendations feel random and not useful. (case 47)",
+    "rating": 3,
+    "expected": {
+      "sentiment": "neutral",
+      "discovery_barriers": [
+        "search",
+        "trust"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "neutral",
+      "sentiment_intensity": 0.6,
+      "emotion": "satisfaction",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "search",
+          "trust"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-048",
+    "text": "I trust Blinkit for groceries but not for electronics. (case 48)",
+    "rating": 1,
+    "expected": {
+      "sentiment": "negative",
+      "discovery_barriers": [],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "negative",
+      "sentiment_intensity": 0.7,
+      "emotion": "frustration",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-049",
+    "text": "Coupon codes rarely work at checkout frustrating. (case 49)",
+    "rating": 5,
+    "expected": {
+      "sentiment": "positive",
+      "discovery_barriers": [
+        "price",
+        "search"
+      ],
+      "mentions_non_grocery_category": false
+    },
+    "baseline_output": {
+      "sentiment": "positive",
+      "sentiment_intensity": 0.8,
+      "emotion": "satisfaction",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": false,
+        "named_categories": [],
+        "discovery_barriers": [
+          "price",
+          "search"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  },
+  {
+    "id": "golden-050",
+    "text": "Subscription plan saves time for weekly stockup. (case 50)",
+    "rating": 3,
+    "expected": {
+      "sentiment": "neutral",
+      "discovery_barriers": [
+        "habit",
+        "awareness"
+      ],
+      "mentions_non_grocery_category": true
+    },
+    "baseline_output": {
+      "sentiment": "neutral",
+      "sentiment_intensity": 0.9,
+      "emotion": "satisfaction",
+      "complaint_category": null,
+      "motivation": "quick groceries",
+      "unmet_need": null,
+      "jtbd": "restock pantry same day",
+      "shopping_behaviour": "mission-driven",
+      "customer_segment": "urban professional",
+      "discovery": {
+        "mentions_non_grocery_category": true,
+        "named_categories": [
+          "snacks"
+        ],
+        "discovery_barriers": [
+          "habit",
+          "awareness"
+        ],
+        "latent_cross_category_intent": false,
+        "cross_category_detail": null
+      }
+    }
+  }
+]

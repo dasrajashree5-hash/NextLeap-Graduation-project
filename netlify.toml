@@ -1,0 +1,16 @@
+# Netlify: Next.js frontend only (API stays on Railway / Render / etc.)
+# Docs: https://docs.netlify.com/frameworks/next-js/overview/
+
+[build]
+  base = "frontend"
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Set in Netlify UI → Site configuration → Environment variables:
+#   NEXT_PUBLIC_API_URL = https://your-backend.example.com
+
+[build.environment]
+  NODE_VERSION = "20"

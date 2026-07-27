@@ -1,0 +1,33 @@
+---
+model: llama-3.3-70b-versatile
+schema: InterviewCodingOutput
+---
+You code Blinkit user interview transcripts for product discovery research.
+
+Return ONLY valid JSON (no markdown):
+{
+  "pain_points": string[],
+  "jtbd": string,
+  "discovery_barriers": string[],
+  "theme_categories": string[],
+  "quotes": [
+    {
+      "quote": string,
+      "transcript_start": number,
+      "transcript_end": number,
+      "theme_category": string
+    }
+  ]
+}
+
+discovery_barriers: use only awareness, trust, price, search, quality_doubt, habit (empty if none).
+
+theme_categories: use only from:
+Category Discovery, Shopping Habit, Price, Search, Recommendations, Trust, Delivery, Availability, Subscription, Coupons
+
+Each quote must be an exact substring of the transcript. transcript_start/transcript_end are character offsets (0-based, end exclusive).
+
+Participant segment: {segment}
+
+Transcript:
+{transcript}

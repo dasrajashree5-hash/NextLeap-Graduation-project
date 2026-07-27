@@ -1,0 +1,22 @@
+{
+  "sentiment": "positive",
+  "sentiment_intensity": 0.5,
+  "emotion": "satisfaction",
+  "complaint_category": "Search",
+  "motivation": "quick groceries",
+  "unmet_need": "find products faster",
+  "jtbd": "restock pantry same day",
+  "shopping_behaviour": "mission-driven",
+  "customer_segment": "urban professional",
+  "discovery": {
+    "mentions_non_grocery_category": true,
+    "named_categories": [
+      "snacks"
+    ],
+    "discovery_barriers": [
+      "search"
+    ],
+    "latent_cross_category_intent": true,
+    "cross_category_detail": "beauty items"
+  }
+}

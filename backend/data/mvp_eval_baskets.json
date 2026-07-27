@@ -1,0 +1,74 @@
+[
+  {
+    "id": "grocery_staples_mission",
+    "customer_segment": "mission_shopper",
+    "items": [
+      { "name": "Amul Taaza Milk 1L" },
+      { "name": "Britannia Brown Bread" }
+    ],
+    "expected_adjacent_categories": ["Pet Care", "Baby Care", "Personal Care", "Snacks", "Beverages"]
+  },
+  {
+    "id": "snacks_only_student",
+    "customer_segment": "student",
+    "items": [
+      { "name": "Lay's Classic Salted" },
+      { "name": "Coca Cola 750ml" }
+    ],
+    "expected_adjacent_categories": ["Personal Care", "Pet Care", "Beverages", "Grocery"]
+  },
+  {
+    "id": "dairy_family",
+    "customer_segment": "family_stockup",
+    "items": [
+      { "name": "Amul Butter 100g" },
+      { "name": "Mother Dairy Curd" }
+    ],
+    "expected_adjacent_categories": ["Baby Care", "Snacks", "Health & Nutrition", "Beverages"]
+  },
+  {
+    "id": "produce_health",
+    "customer_segment": "health_conscious",
+    "items": [
+      { "name": "Fresh Apple 1kg" },
+      { "name": "Onion 1kg" }
+    ],
+    "expected_adjacent_categories": ["Health & Nutrition", "Beverages", "Household"]
+  },
+  {
+    "id": "baby_partial",
+    "customer_segment": "new_parent",
+    "items": [
+      { "name": "Pampers Baby Wipes" },
+      { "name": "Rice 5kg" }
+    ],
+    "expected_adjacent_categories": ["Personal Care", "Household", "Grocery", "Snacks"]
+  },
+  {
+    "id": "pet_in_basket",
+    "customer_segment": "pet_owner",
+    "items": [
+      { "name": "Pedigree dog food" },
+      { "name": "Amul Milk 1L" }
+    ],
+    "expected_adjacent_categories": ["Snacks", "Household", "Personal Care", "Baby Care"]
+  },
+  {
+    "id": "household_cleaning",
+    "customer_segment": "mission_shopper",
+    "items": [
+      { "name": "Surf Excel detergent" },
+      { "name": "Floor cleaner" }
+    ],
+    "expected_adjacent_categories": ["Personal Care", "Grocery", "Snacks"]
+  },
+  {
+    "id": "explicit_categories",
+    "customer_segment": "explorer",
+    "items": [
+      { "name": "Weekly staples", "category": "Grocery" },
+      { "name": "Fresh juice", "category": "Beverages" }
+    ],
+    "expected_adjacent_categories": ["Pet Care", "Personal Care", "Snacks"]
+  }
+]

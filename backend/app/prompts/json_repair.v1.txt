@@ -1,0 +1,12 @@
+---
+model: llama-3.3-70b-versatile
+schema: JsonRepair
+---
+Fix the following invalid JSON so it parses and matches the intended structure.
+Return ONLY the corrected JSON, no commentary.
+
+Validation error:
+{error}
+
+Invalid payload:
+{payload}

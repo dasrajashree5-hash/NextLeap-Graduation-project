@@ -1,0 +1,18 @@
+---
+model: llama-3.3-70b-versatile
+schema: ClusterLabelOutput
+---
+You label a cluster of similar Blinkit app reviews.
+
+Return ONLY valid JSON:
+{
+  "label": string,
+  "description": string,
+  "category": string
+}
+
+category MUST be exactly one of:
+Category Discovery, Shopping Habit, Price, Search, Recommendations, Trust, Delivery, Availability, Subscription, Coupons
+
+Representative reviews:
+{reviews}

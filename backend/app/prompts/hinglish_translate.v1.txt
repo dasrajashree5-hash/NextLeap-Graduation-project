@@ -1,0 +1,6 @@
+The following review may be Hinglish or mixed Hindi-English (Latin script).
+Translate to natural English for analysis. Keep brand names (Blinkit, Grofers) unchanged.
+Return ONLY the translation.
+
+Review:
+{text}
