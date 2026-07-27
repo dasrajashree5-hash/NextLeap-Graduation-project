@@ -4,6 +4,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import RedirectResponse
 
 from app.api.routes import router as api_router
 from app.config import get_settings
@@ -51,6 +52,19 @@ def create_app() -> FastAPI:
     @app.get("/")
     async def root():
         return {"service": "blinkit-discovery-engine", "docs": "/docs"}
+
+    prefix = settings.api_prefix.rstrip("/")
+
+    @app.get("/themes", include_in_schema=False)
+    async def legacy_themes():
+        return RedirectResponse(url=f"{prefix}/themes", status_code=307)
+
+    @app.get("/insights", include_in_schema=False)
+    async def legacy_insights(request: Request):
+        target = f"{prefix}/insights"
+        if request.url.query:
+            target = f"{target}?{request.url.query}"
+        return RedirectResponse(url=target, status_code=307)
 
     return app
 

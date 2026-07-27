@@ -35,10 +35,29 @@ Backend CORS: add production frontend origin in `app/main.py` or via settings wh
 
 ## Backend deploy (Railway / Render)
 
-1. Root directory: `backend/`
-2. Start command (must run via shell so `$PORT` expands): `sh -c 'alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}'` — or leave blank to use the Dockerfile `CMD`.
-3. Health check path: `/api/health`
-4. Persistent volume (optional): mount `data/` for SQLite demo; use Postgres for production.
+1. **Root directory:** `backend/` (must match `backend/railway.toml` and `backend/Dockerfile`).
+2. **Start command:** leave empty in the Railway UI so the image runs `scripts/start.sh` (migrations + uvicorn on `$PORT`).  
+   If you override it, use a **shell** so `PORT` expands, e.g. `sh scripts/start.sh` — never bare `uvicorn ... --port $PORT` (uvicorn receives the literal `$PORT` and the container crash-loops).
+3. **Health check path:** `/api/health`
+4. **Required env vars on the backend service:**
+
+   | Variable | Required | Notes |
+   |----------|----------|--------|
+   | `DATABASE_URL` | **Yes (production)** | Attach Railway Postgres or paste URL; `postgres://` / `postgresql://` are auto-normalized to `postgresql+psycopg://` |
+   | `ENVIRONMENT` | Recommended | `production` |
+   | `GROQ_API_KEY` | Optional | LLM pipelines; health may show `not_configured` without it |
+   | `CORS_ORIGINS` | **Yes for Netlify** | e.g. `https://graduationprojectblinkitnextleap.netlify.app` |
+   | `CHROMA_PERSIST_DIR` | Optional | Default `./data/chroma`; use a volume for persistence |
+
+5. **Public URL:** Service → **Settings → Networking → Generate domain**. Without a domain, the service is not reachable from the internet.
+6. Persistent volume (optional): mount `data/` for SQLite demo; use Postgres for production.
+
+**Smoke URLs after deploy** (replace host):
+
+- `GET https://<host>/api/health`
+- `GET https://<host>/api/themes` (may be `[]` until pipeline runs)
+- `GET https://<host>/api/insights?limit=12`
+- Legacy redirects: `/themes` → `/api/themes`, `/insights` → `/api/insights`
 
 ---
 
