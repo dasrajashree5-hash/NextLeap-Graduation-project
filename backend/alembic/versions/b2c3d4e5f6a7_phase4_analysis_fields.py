@@ -5,7 +5,7 @@ Revises: 1d7d4bdc6427
 Create Date: 2026-07-27 16:00:00.000000
 
 """
-from typing import Sequence, Union
+from typing import List, Sequence, Union
 
 from alembic import op
 import sqlalchemy as sa
@@ -23,6 +23,12 @@ def _has_column(table: str, column: str) -> bool:
     return any(col["name"] == column for col in insp.get_columns(table))
 
 
+def _has_index(table: str, index_name: str) -> bool:
+    bind = op.get_bind()
+    insp = sa.inspect(bind)
+    return any(ix["name"] == index_name for ix in insp.get_indexes(table))
+
+
 def _has_insights_theme_fk() -> bool:
     bind = op.get_bind()
     insp = sa.inspect(bind)
@@ -32,19 +38,41 @@ def _has_insights_theme_fk() -> bool:
     )
 
 
-def _add_insights_theme_id() -> None:
+def _upgrade_insights() -> None:
+    """SQLite cannot ADD CONSTRAINT via plain ALTER; use one batch_alter_table."""
     bind = op.get_bind()
+    insight_columns: List[sa.Column] = []
+    if not _has_column("insights", "confidence_breakdown"):
+        insight_columns.append(sa.Column("confidence_breakdown", sa.JSON(), nullable=True))
+    if not _has_column("insights", "rank_score"):
+        insight_columns.append(sa.Column("rank_score", sa.Float(), nullable=True))
+
+    need_theme_id = not _has_column("insights", "theme_id")
+    need_fk = not _has_insights_theme_fk()
+
+    if not insight_columns and not need_theme_id and not need_fk:
+        return
+
     if bind.dialect.name == "sqlite":
         with op.batch_alter_table("insights") as batch_op:
-            batch_op.add_column(sa.Column("theme_id", sa.Integer(), nullable=True))
-            batch_op.create_foreign_key(
-                "fk_insights_theme_id",
-                "themes",
-                ["theme_id"],
-                ["id"],
-            )
-    else:
+            for col in insight_columns:
+                batch_op.add_column(col)
+            if need_theme_id:
+                batch_op.add_column(sa.Column("theme_id", sa.Integer(), nullable=True))
+            if need_fk:
+                batch_op.create_foreign_key(
+                    "fk_insights_theme_id",
+                    "themes",
+                    ["theme_id"],
+                    ["id"],
+                )
+        return
+
+    for col in insight_columns:
+        op.add_column("insights", col)
+    if need_theme_id:
         op.add_column("insights", sa.Column("theme_id", sa.Integer(), nullable=True))
+    if need_fk:
         op.create_foreign_key(
             "fk_insights_theme_id",
             "insights",
@@ -60,7 +88,9 @@ def upgrade() -> None:
             "reviews",
             sa.Column("analysis_version", sa.String(length=32), nullable=True),
         )
+    if not _has_index("reviews", "ix_reviews_analysis_version"):
         op.create_index("ix_reviews_analysis_version", "reviews", ["analysis_version"])
+
     if not _has_column("reviews", "analysis_failed"):
         op.add_column(
             "reviews",
@@ -88,48 +118,44 @@ def upgrade() -> None:
             sa.Column("status", sa.String(length=32), nullable=False, server_default="success"),
         )
 
-    if not _has_column("insights", "confidence_breakdown"):
-        op.add_column("insights", sa.Column("confidence_breakdown", sa.JSON(), nullable=True))
-    if not _has_column("insights", "rank_score"):
-        op.add_column("insights", sa.Column("rank_score", sa.Float(), nullable=True))
-    if not _has_column("insights", "theme_id"):
-        _add_insights_theme_id()
-    elif not _has_insights_theme_fk():
-        bind = op.get_bind()
-        if bind.dialect.name == "sqlite":
-            with op.batch_alter_table("insights") as batch_op:
-                batch_op.create_foreign_key(
-                    "fk_insights_theme_id",
-                    "themes",
-                    ["theme_id"],
-                    ["id"],
-                )
-        else:
-            op.create_foreign_key(
-                "fk_insights_theme_id",
-                "insights",
-                "themes",
-                ["theme_id"],
-                ["id"],
-            )
+    _upgrade_insights()
 
 
 def downgrade() -> None:
     bind = op.get_bind()
     if bind.dialect.name == "sqlite":
         with op.batch_alter_table("insights") as batch_op:
-            batch_op.drop_constraint("fk_insights_theme_id", type_="foreignkey")
-            batch_op.drop_column("theme_id")
+            if _has_insights_theme_fk():
+                batch_op.drop_constraint("fk_insights_theme_id", type_="foreignkey")
+            if _has_column("insights", "theme_id"):
+                batch_op.drop_column("theme_id")
+            if _has_column("insights", "rank_score"):
+                batch_op.drop_column("rank_score")
+            if _has_column("insights", "confidence_breakdown"):
+                batch_op.drop_column("confidence_breakdown")
     else:
-        op.drop_constraint("fk_insights_theme_id", "insights", type_="foreignkey")
-        op.drop_column("insights", "theme_id")
-    op.drop_column("insights", "rank_score")
-    op.drop_column("insights", "confidence_breakdown")
-    op.drop_column("analyses", "status")
-    op.drop_column("analyses", "discovery_json")
-    op.drop_column("analyses", "shopping_behaviour")
-    op.drop_column("analyses", "complaint_category")
-    op.drop_column("analyses", "sentiment_intensity")
-    op.drop_column("reviews", "analysis_failed")
-    op.drop_index("ix_reviews_analysis_version", table_name="reviews")
-    op.drop_column("reviews", "analysis_version")
+        if _has_insights_theme_fk():
+            op.drop_constraint("fk_insights_theme_id", "insights", type_="foreignkey")
+        if _has_column("insights", "theme_id"):
+            op.drop_column("insights", "theme_id")
+        if _has_column("insights", "rank_score"):
+            op.drop_column("insights", "rank_score")
+        if _has_column("insights", "confidence_breakdown"):
+            op.drop_column("insights", "confidence_breakdown")
+
+    if _has_column("analyses", "status"):
+        op.drop_column("analyses", "status")
+    if _has_column("analyses", "discovery_json"):
+        op.drop_column("analyses", "discovery_json")
+    if _has_column("analyses", "shopping_behaviour"):
+        op.drop_column("analyses", "shopping_behaviour")
+    if _has_column("analyses", "complaint_category"):
+        op.drop_column("analyses", "complaint_category")
+    if _has_column("analyses", "sentiment_intensity"):
+        op.drop_column("analyses", "sentiment_intensity")
+    if _has_column("reviews", "analysis_failed"):
+        op.drop_column("reviews", "analysis_failed")
+    if _has_index("reviews", "ix_reviews_analysis_version"):
+        op.drop_index("ix_reviews_analysis_version", table_name="reviews")
+    if _has_column("reviews", "analysis_version"):
+        op.drop_column("reviews", "analysis_version")
